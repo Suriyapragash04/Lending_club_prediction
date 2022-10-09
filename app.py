@@ -10,8 +10,10 @@ model = pickle.load(open("model.pkl", "rb"))
 def Home():
     return render_template("index.html")
 
-@app.route("/predict", methods = ["POST"])
+@app.route("/predict", methods = ["GET", "POST"])
+@cross_origin()
 def predict():
+    if request.method == "POST":
         annual_inc = float(request.form["annual_inc"])
         fico_range_high = float(request.form["fico_range_high"])
         int_rate = float(request.form["int_rate"])
@@ -345,7 +347,7 @@ def predict():
             output = 'Low Risk'
         return render_template('index.html', prediction_text="Status of the loan is {}".format(output))
 
-
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

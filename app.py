@@ -10,8 +10,7 @@ model = pickle.load(open("model.pkl", "rb"))
 def Home():
     return render_template("index.html")
 
-@app.route("/predict", methods = ["GET", "POST"])
-@cross_origin()
+@app.route("/predict", methods = ["POST"])
 def predict():
     if request.method == "POST":
         annual_inc = float(request.form["annual_inc"])

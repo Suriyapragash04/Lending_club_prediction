@@ -1,0 +1,213 @@
+<!-- HTML code to add icon in the title bar -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8" />
+          
+        <title>
+            Lending Club defaulter prediction
+        </title>
+          
+        <!-- add icon link -->
+        <link rel = "icon" href = 
+"https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/fnyd5qggryugrcynulkf" 
+        type = "image/x-icon">
+          
+</head>
+<style>
+body {
+  background-image: url('https://www.expenseanywhere.com/wp-content/uploads/2016/09/website-backgrounds-E280AB1E280AC-E280ABE280AC.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+<!DOCTYPE html>
+<html>
+    <center>
+        <div class="header_p1">
+            <img src="https://www.culvercityfamilydentistry.com/upload/15582524-lending-club-logo.png"/>
+        </div>
+    </center>
+    </head>
+
+<body>
+
+<h2 style="text-align:center">Loan Defaulter Prediction</h2 style="text-align:center">
+
+
+
+  
+
+     <!-- Main Input For Receiving Query to our ML -->
+     <center>
+     <div class="text-center">
+    <form action="{{ url_for('predict')}}"method="post">
+        <div class="d-flex flex-row justify-content-center">
+            <input type="text" name='annual_inc' placeholder='Annual Income' required="required" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name='fico_range_high' placeholder='Fico Range High' required="required" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <input type="text" name='int_rate' placeholder='Intrest Rate' required="required" />
+            </div> </center>
+            <center>
+    <div class="d-flex flex-row justify-content-center">
+            <input type="text" name='loan_amnt' placeholder='Loan Amount' required="required" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name='num_actv_bc_tl' placeholder='Active Bankcard Accounts' required="required" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name='mort_acc' placeholder='Mortage Accounts' required="required" />
+      </div> </center>
+    <center>
+      <div class="d-flex flex-row justify-content-center">
+            <input type="text" name='tot_cur_bal' placeholder='Total current Balance' required="required" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name='open_acc' placeholder='Open Account' required="required" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="text" name='pub_rec' placeholder='Public Record' required="required" />
+            
+            </div> </center>
+          <center>
+        <div class="d-flex flex-row justify-content-center">
+          <input type="text" name='revol_bal' placeholder='Total credit revolving balance' required="required" />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name='revol_util' placeholder='Revolving line utilization rate' required="required" />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name='term' placeholder='Term' required="required" />
+        </div> </center>
+  <center>
+          <div class="d-flex flex-row justify-content-center">
+          <input type="text" name='total_acc' placeholder='Total no. of credit lines' required="required" />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name='installment' placeholder='Installment' required="required" />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" name='dti' placeholder='DTI' required="required" />
+          </div> </center>
+            </div>
+ </div><br>
+ <center>
+        <div class="d-flex flex-row justify-content-center">
+            <label for='grade'>Grade</label>
+            <select id="grade" name="grade">
+            <option value="0">A</option>
+             <option value="1">B</option>
+             <option value="2">C</option>
+            <option value="3">D</option>
+            <option value="4">E</option>
+            <option value="5">F</option>
+            <option value="6">G</option>
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+
+            <label for="initial_list_status">Initial_list_status</label>
+            <select id="initial_list_status" name="initial_list_status">
+            <option value="0">F</option>
+             <option value="1">W</option>
+              </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <label for="home_ownership">Home Ownership</label>
+            <select id="home_ownership" name="home_ownership">
+            <option value="0">Mortage</option>
+             <option value="1">Rent</option>
+             <option value="2">Own</option>
+            <option value="3">Other</option>
+            </select>
+		 </div> </center>
+    <br>
+</div>
+
+<center>
+            <label for="application_type">Application Type</label>
+                        <select id="application_type" name="application_type">
+            <option value="0">Individual</option>
+             <option value="1">Joint App</option>
+                           </select>
+                           &nbsp;&nbsp;&nbsp;
+                    <label for="verification_status">Verification Status</label>
+            <select id="verification_status" name="verification_status">
+            <option value="0">Not Verified</option>
+            <option value="1">'Source Verified'</option>
+             <option value="1">'Verified'</option>
+                                           </select>
+                                           &nbsp;&nbsp;&nbsp;
+		            <label for='purpose'>Purpose</label>
+            <select id="purpose" name="purpose">
+            <option value="0">Car</option>
+             <option value="1">Credit Card</option>
+             <option value="2">Debt Consolidation</option>
+            <option value="3">Educational</option>
+            <option value="4">Home Improvement</option>
+            <option value="5">House</option>
+            <option value="6">Major Purchase</option>
+            <option value="7">Medical</option>
+            <option value="8">Moving</option>
+            <option value="9">Other</option>
+            <option value="10">Renewable Energy</option>
+             <option value="11">Small Business</option>
+             <option value="12">Vacation</option>
+            <option value="13">Wedding</option>
+            </select>
+    <br>
+</div></center>
+    <br>
+    <style>
+button {
+        display: inline-block;
+        background-color: #170b17;
+        border-radius: 5px;
+        border: 2px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px;
+        width: 100px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+      button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -10px;
+        transition: 0.5s;
+      }
+button:hover {
+        background-color: #170b17;
+      }
+      button:hover span {
+        padding-right: 12px;
+      }
+      button:hover span:after {
+        opacity: 1;
+        right: 0;
+      }
+    </style>
+  <body> <center>
+    <button>
+      <span>Predict</span>
+    </button>
+             </div> </center>
+    </form>
+</div>
+   <br>
+   <br>
+  <center><h2>
+<div style="color:red">
+   {{ prediction_text }}
+
+ </div></h2></center>
+
+
+</body>
+</html>
